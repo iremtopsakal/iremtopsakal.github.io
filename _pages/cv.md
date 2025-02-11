@@ -11,48 +11,44 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.S. Metallurgical and Materials Engineering, Middle East Technical University, 2024 - 2026 (expected)
+  * CGPA: 4.00/4.00  
+* B.S. Metallurgical and Materials Engineering, Middle East Technical University, 2021 - 2024
+  * CGPA: 3.98/4.00  
+* B.S. Civil Engineering, Middle East Technical University, 2018 - 2021
+  * Transfered to Metallurgical and Materials Engineering department after studying for 3 semesters
 
-Work experience
+
+Experiences
 ======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Jan. 2025 - Present : Research and Teaching Assistant
+  * Middle East Technical University, Metallurgical and Materials Engineering
+  * Courses given: 
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Dec. 2023 - May 2024 : Candidate Engineer
+  * Turkish Aerospace
+  * Assembly material selection (fasteners, sealants, seals & adhesives) in design stage based on aerospace specifications, galvanic compatibility and surface treatments
+ 
+* Jul. 2023 - Sept. 2024 : Laboratory Intern
+  * Technische Universität Clausthal, Germany
+  * Recycling of lithium ion batteries with hydrometallurgical processes in Prof. Dr.-Ing. Bengi Yagmurlu's lab
+  * Conducting several precipitation and leaching experiments with different parameters
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Python, MATLAB
+* AutoCAD, Fusion360, MARC
+  * Induction Heating Simulation for Steel with Finite Element Methods
+* Pandat
+* Applied XRD
 
 Publications
 ======
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
+
+
 Teaching
 ======
   <ul>{% for post in site.teaching reversed %}
