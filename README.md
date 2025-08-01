@@ -1,1 +1,0 @@
-# iremtopsakal.github.io
