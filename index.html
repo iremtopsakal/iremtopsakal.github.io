@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Irem Topsakal | Personal Academic Website</title>
+    <meta name="description" content="Personal academic webpage of [Your Name].">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="side-nav">
+        <a href="#" class="nav-link active">About</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#teaching" class="nav-link">Teaching</a>
+        <a href="#publications" class="nav-link">Publications</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1 class="name">Irem Topsakal</h1>
+            <p class="title">Research Assistant & MSc Student in Metallurgical and Materials Engineering, METU</p>
+            <div class="external-links">
+                <a href="[LINK_TO_YOUR_CV.pdf]" target="_blank">Full CV</a>
+                <a href="https://www.linkedin.com/in/iremtopsakal/" target="_blank">Linkedin</a>
+                <!-- <a href="[LINK_TO_YOUR_ORCID]" target="_blank">ORCID</a> -->
+                <a href="mailto:[iremto@metu.edu.tr]">Email</a>
+            </div>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>About Me</h2>
+                <p>
+                    I really dont want to write this part right now.
+                </p>
+            </section>
+
+            <section id="education">
+                <h2>Education</h2>
+                <div class="item">
+                    <p class="item-title"><strong>MSc in Metallurgical and Materials Engineering</strong></p>
+                    <p class="item-meta"> Middle East Technical University | Ankara, Turkiye | 2024 – Present</p>
+                    <ul class="item-description">
+                        <li> Materials Informatics Strategies Laboratory </li>
+                        <li> Current CGPA: 4.00/4.00 </li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <p class="item-title"><strong>BSc in Metallurgical and Materials Engineering</strong></p>
+                    <p class="item-meta"> Middle East Technical University | Ankara, Turkiye | 2021 – 2024 </p>
+                    <ul class="item-description">
+                        <li> CGPA: 3.98/4.00 (graduated with High Honors) </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Work Experience</h2>
+                <div class="item">
+                    <p class="item-title"><strong>Research and Teaching Assistant </strong></p>
+                    <p class="item-meta"> Middle East Technical University | Ankara, Turkiye | Jan 2025 - present</p>
+                    <ul class="item-description">
+                        <li> Assisted courses can be found in <a href="#teaching" class="nav-link">Teaching</a> part</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <p class="item-title"><strong> Candidate Engineer </strong></p>
+                    <p class="item-meta"> Turkish Aerospace | Ankara, Turkiye | Dec 2023 - May 2024 </p>
+                    <ul class="item-description">
+                        <li> Part time </li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <p class="item-title"><strong> Laboratory Intern </strong></p>
+                    <p class="item-meta"> Technische Universtät Clausthal | Clausthal-Zellerfeld, Germany | Jun 2023 - Aug 2023 </p>
+                    <ul class="item-description">
+                        <li> Recycling of lithium ion batteries with hydrometallurgical processes</li>
+                        <li> Conducted several precipitation and leaching experiments with different parameters </li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="teaching">
+                <h2>Teaching</h2>
+                <div class="item">
+                    <p class="item-title"><strong>METE310: Structure and Characterization of Materials </strong></p>
+                    <p class="item-meta"> Spring 2024 - 2025 </p>
+                    <ul class="item-description">
+                        <li> My course notes can be found in <a href="images.jpeg">here</a>. </li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <p class="item-title"><strong>METE350: Multi-Scale Modeling and Simulation of Materials </strong></p>
+                    <p class="item-meta"> Spring 2024 - 2025 </p>
+                    <ul class="item-description">
+                        <li> My course notes can be found in <a href="images.jpeg">here</a>. </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="publications">
+                <h2>Publications</h2>
+                <!--
+                <div class="publication-item">
+                    <p class="pub-title"><strong>A Novel Method for Solving Complex Problems</strong></p>
+                    <p class="pub-authors"><strong>[Your Name]</strong>, Author B, Author C</p>
+                    <p class="pub-venue"><em>Proceedings of the International Conference on Important Research, 2025</em></p>
+                    <p class="pub-links">[<a href="#">PDF</a>] [<a href="#">Code</a>] [<a href="#">DOI</a>]</p>
+                </div>
+                -->
+                <p> Hopefully soon :) </p>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025, thanks to LLMs :) </p>
+        </footer>
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.side-nav .nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            if (pageYOffset < sections[0].offsetTop - 60) {
+                current = 'about';
+            } else {
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute('id');
+                    }
+                });
+            }
+
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2) {
+                current = sections[sections.length - 1].getAttribute('id');
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkHref = link.getAttribute('href');
+                if (linkHref === '#' && current === 'about') {
+                    link.classList.add('active');
+                } else if (linkHref === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
