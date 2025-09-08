@@ -15,7 +15,7 @@ body {
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px 160px 20px 20px;
+  padding: 20px 160px 20px 20px; /* room for right-side nav on desktop */
 }
 
 a {
@@ -23,10 +23,9 @@ a {
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
-
 a:hover { color: #003B70; text-decoration: underline; }
 
-/* --- SIDE NAV: desktop (vertical fixed) --- */
+/* --- SIDE NAV: desktop (vertical fixed on right) --- */
 .side-nav {
   position: fixed;
   top: 50%;
@@ -34,7 +33,6 @@ a:hover { color: #003B70; text-decoration: underline; }
   transform: translateY(-50%);
   z-index: 1000;
 }
-
 .side-nav .nav-link {
   display: block;
   font-weight: 600;
@@ -45,7 +43,6 @@ a:hover { color: #003B70; text-decoration: underline; }
   color: #aaa;
   transition: all 0.2s ease-in-out;
 }
-
 .side-nav .nav-link.active {
   color: #333;
   font-weight: 700;
@@ -59,7 +56,6 @@ header {
   border-bottom: 2px solid #f0f0f0;
   margin-bottom: 50px;
 }
-
 h1.name { font-size: 2.4em; margin: 0; font-weight: 700; color: #333; }
 p.title { font-size: 1.2em; color: #777; margin-top: 5px; }
 
@@ -67,7 +63,7 @@ p.title { font-size: 1.2em; color: #777; margin-top: 5px; }
 h2 { font-size: 2em; font-weight: 700; margin-top: 0; color: #333; }
 section { padding: 50px 0; }
 
-/* Keep anchors from hiding under sticky mobile nav */
+/* Prevent anchor headings from hiding under the mobile bar */
 section, [id] { scroll-margin-top: calc(var(--nav-h) + env(safe-area-inset-top) + 8px); }
 
 /* --- EXTERNAL LINKS IN HEADER --- */
@@ -77,7 +73,6 @@ section, [id] { scroll-margin-top: calc(var(--nav-h) + env(safe-area-inset-top) 
   margin-top: 20px;
   justify-content: center;
 }
-
 .external-links a { color: #00529B; font-weight: 600; font-size: 0.95em; }
 
 /* --- ITEM STYLES --- */
@@ -98,35 +93,42 @@ footer {
   color: #aaa;
 }
 
-/* Last section tall enough for bottom edge-case */
+/* Make last section tall enough for bottom highlight edge case */
 section:last-of-type { min-height: 100vh; }
 
-/* --- RESPONSIVE: mobile top nav that STICKS --- */
+/* --- RESPONSIVE: mobile top nav that auto-hides on scroll down --- */
 @media (max-width: 992px) {
   body { padding: 0; }
 
   .side-nav {
-    position: sticky;               /* <— keeps nav visible while scrolling */
-    top: 0;
-    left: 0; right: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
-    transform: none;
     display: flex;
+    gap: 5px 15px;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5px 15px;
-    padding: calc(15px + env(safe-area-inset-top)) 15px 15px;
-    background-color: #fff;
+    padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+    height: var(--nav-h);
+    background: #fff;
     border-bottom: 1px solid #e9e9e9;
     box-shadow: 0 1px 6px rgba(0,0,0,.06);
+    transform: translateY(0);
+    transition: transform .22s ease;
   }
 
+  /* Hidden state toggled via JS while scrolling down */
+  .side-nav.nav-hidden {
+    transform: translateY(calc(-100% - env(safe-area-inset-top)));
+  }
+
+  /* Keep content from sitting under the fixed bar */
+  .container { padding: calc(20px + var(--nav-h)) 20px 20px; }
+
+  /* Tidy link look on mobile */
   .side-nav .nav-link,
   .side-nav .nav-link.active {
     text-align: center;
     transform: none;
   }
-
-  .container { padding: 20px; }
-  header { padding-top: 25px; }
 }
