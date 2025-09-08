@@ -26,8 +26,8 @@
       <h1 class="name">Irem Topsakal</h1>
       <p class="title">Research Assistant &amp; MSc Student in Metallurgical and Materials Engineering, METU</p>
       <div class="external-links">
-        <a href="[LINK_TO_YOUR_CV.pdf]" target="_blank">Full CV</a>
-        <a href="https://www.linkedin.com/in/iremtopsakal/" target="_blank">Linkedin</a>
+        <a href="[LINK_TO_YOUR_CV.pdf]" target="_blank" rel="noopener">Full CV</a>
+        <a href="https://www.linkedin.com/in/iremtopsakal/" target="_blank" rel="noopener">Linkedin</a>
         <a href="mailto:iremto@metu.edu.tr">Email</a>
       </div>
     </header>
@@ -117,23 +117,57 @@
     </footer>
   </div>
 
-  <!-- Active link highlighter -->
+  <!-- JS: active link, and mobile auto-hide navbar -->
   <script>
+    // Active link highlighter
     const sections = [...document.querySelectorAll('main section[id]')];
     const navLinks = [...document.querySelectorAll('.side-nav .nav-link')];
-
-    window.addEventListener('scroll', () => {
-      let current = sections[0].id;
+    function setActive() {
+      let current = sections[0]?.id || '';
       for (const sec of sections) {
         if (window.pageYOffset >= sec.offsetTop - 80) current = sec.id;
       }
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2) {
-        current = sections[sections.length - 1].id;
+        current = sections.at(-1)?.id || current;
       }
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
-    });
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${current}`));
+    }
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+
+    // Mobile auto-hide: hide on scroll down, show on scroll up
+    let lastY = window.pageYOffset;
+    let ticking = false;
+    const nav = document.querySelector('.side-nav');
+    const SHOW_THRESHOLD = 6; // px movement before toggling
+
+    function onScroll() {
+      const y = window.pageYOffset;
+      const delta = y - lastY;
+
+      if (Math.abs(delta) > SHOW_THRESHOLD) {
+        const goingDown = delta > 0;
+        if (window.matchMedia('(max-width: 992px)').matches) {
+          nav.classList.toggle('nav-hidden', goingDown && y > 10);
+        } else {
+          nav.classList.remove('nav-hidden');
+        }
+        lastY = y;
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Reveal nav at very top
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset < 4) nav.classList.remove('nav-hidden');
+    }, { passive: true });
   </script>
 </body>
 </html>
