@@ -1,109 +1,86 @@
 /* --- GLOBAL STYLES & SMOOTH SCROLL --- */
-html {
-    scroll-behavior: smooth;
-}
+:root { --nav-h: 56px; }
+
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'IBM Plex Sans', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.7;
-    margin: 0;
-    padding: 20px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.7;
+  margin: 0;
+  padding: 20px;
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 160px 20px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 160px 20px 20px;
 }
 
 a {
-    color: #00529B;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
+  color: #00529B;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
 }
 
-a:hover {
-    color: #003B70;
-    text-decoration: underline; /* UPDATED: Underline appears on hover */
-}
+a:hover { color: #003B70; text-decoration: underline; }
 
-/* --- SIDE NAVIGATION --- */
+/* --- SIDE NAV: desktop (vertical fixed) --- */
 .side-nav {
-    position: fixed;
-    top: 50%;
-    right: 35px;
-    transform: translateY(-50%);
-    z-index: 1000;
+  position: fixed;
+  top: 50%;
+  right: 35px;
+  transform: translateY(-50%);
+  z-index: 1000;
 }
 
 .side-nav .nav-link {
-    display: block;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: right;
-    padding: 6px 0;
-    font-size: 0.9em;
-    color: #aaa;
-    transition: all 0.2s ease-in-out;
+  display: block;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: right;
+  padding: 6px 0;
+  font-size: 0.9em;
+  color: #aaa;
+  transition: all 0.2s ease-in-out;
 }
 
 .side-nav .nav-link.active {
-    color: #333;
-    font-weight: 700;
-    transform: scale(1.1);
+  color: #333;
+  font-weight: 700;
+  transform: scale(1.1);
 }
 
-/* --- HEADER (NOT STICKY) --- */
+/* --- HEADER --- */
 header {
-    text-align: center;
-    padding: 50px 0;
-    border-bottom: 2px solid #f0f0f0;
-    margin-bottom: 50px;
+  text-align: center;
+  padding: 50px 0;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 50px;
 }
 
-h1.name {
-    font-size: 2.4em;
-    margin: 0;
-    font-weight: 700;
-    color: #333;
-}
-
-p.title {
-    font-size: 1.2em;
-    color: #777;
-    margin-top: 5px;
-}
+h1.name { font-size: 2.4em; margin: 0; font-weight: 700; color: #333; }
+p.title { font-size: 1.2em; color: #777; margin-top: 5px; }
 
 /* --- MAIN CONTENT & SECTIONS --- */
-h2 {
-    font-size: 2em;
-    font-weight: 700;
-    margin-top: 0;
-    color: #333;
-}
+h2 { font-size: 2em; font-weight: 700; margin-top: 0; color: #333; }
+section { padding: 50px 0; }
 
-section {
-    padding: 50px 0;
-}
+/* Keep anchors from hiding under sticky mobile nav */
+section, [id] { scroll-margin-top: calc(var(--nav-h) + env(safe-area-inset-top) + 8px); }
 
 /* --- EXTERNAL LINKS IN HEADER --- */
 .external-links {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-    justify-content: center;
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
 }
 
-.external-links a {
-    color: #00529B;
-    font-weight: 600;
-    font-size: 0.95em;
-    /* UPDATED: Removed the permanent underline from here */
-}
+.external-links a { color: #00529B; font-weight: 600; font-size: 0.95em; }
 
-/* --- ITEM STYLES (Education, Experience, etc.) --- */
+/* --- ITEM STYLES --- */
 .item, .publication-item { margin-bottom: 25px; }
 .item-title strong, .pub-title strong { font-size: 1.15em; font-weight: 600; }
 .item-meta, .pub-authors, .pub-venue { color: #6c757d; }
@@ -113,48 +90,43 @@ section {
 
 /* --- FOOTER --- */
 footer {
-    text-align: center;
-    margin-top: 60px;
-    padding-top: 20px;
-    border-top: 1px solid #f0f0f0;
-    font-size: 0.9em;
-    color: #aaa;
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 0.9em;
+  color: #aaa;
 }
 
-/* --- FIX for last section highlighting --- */
-section:last-of-type {
-    min-height: 100vh;
-}
+/* Last section tall enough for bottom edge-case */
+section:last-of-type { min-height: 100vh; }
 
-/* --- RESPONSIVE DESIGN --- */
+/* --- RESPONSIVE: mobile top nav that STICKS --- */
 @media (max-width: 992px) {
-    body {
-        padding: 0;
-    }
-    
-    .side-nav {
-        position: static;
-        transform: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px 15px;
-        padding: 15px;
-        background-color: #f8f9fa;
-        border-bottom: 1px solid #e9e9e9;
-        box-shadow: none;
-    }
-    
-    .side-nav .nav-link, .side-nav .nav-link.active {
-        text-align: center;
-        transform: none;
-    }
+  body { padding: 0; }
 
-    .container {
-        padding: 20px;
-    }
+  .side-nav {
+    position: sticky;               /* <— keeps nav visible while scrolling */
+    top: 0;
+    left: 0; right: 0;
+    z-index: 1000;
+    transform: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px 15px;
+    padding: calc(15px + env(safe-area-inset-top)) 15px 15px;
+    background-color: #fff;
+    border-bottom: 1px solid #e9e9e9;
+    box-shadow: 0 1px 6px rgba(0,0,0,.06);
+  }
 
-    header {
-        padding-top: 25px;
-    }
+  .side-nav .nav-link,
+  .side-nav .nav-link.active {
+    text-align: center;
+    transform: none;
+  }
+
+  .container { padding: 20px; }
+  header { padding-top: 25px; }
 }
